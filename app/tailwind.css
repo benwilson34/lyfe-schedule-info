@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply bg-white dark:bg-gray-950;
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
+
+/* Based on https://github.com/GeoffSelby/tailwind-md-base?tab=readme-ov-file#default-config */
+@layer base {
+  :root {
+    --color-background: 20 37 41;
+    --color-raised: 40 74 82;
+    --color-primary: 255 132 31;
+    --color-secondary: 255 163 92;
+    --color-accent: 192 53 57;
+    --nav-icon-width: 1.5rem;
+  }
+
+  /* @font-face {
+    font-family: "Basteleur";
+    src: url("/fonts/Basteleur-Bold.woff2") format("woff2"),
+      url("/fonts/Basteleur-Bold.woff") format("woff"),
+      url("/fonts/Basteleur-Bold.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Basteleur Moonlight";
+    src: url("/fonts/Basteleur-Moonlight.woff2") format("woff2"),
+      url("/fonts/Basteleur-Moonlight.woff") format("woff"),
+      url("/fonts/Basteleur-Moonlight.ttf") format("truetype");
+  } */
+
+  @font-face {
+    font-family: "Trickster";
+    src: url("/fonts/Trickster-Regular.woff2") format("woff2"),
+      url("/fonts/Trickster-Regular.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "ClashDisplay-Light";
+    src: url("/fonts/ClashDisplay-Light.woff2") format("woff2"),
+      url("/fonts/ClashDisplay-Light.woff") format("woff"),
+      url("/fonts/ClashDisplay-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "ClashDisplay-Semibold";
+    src: url("/fonts/ClashDisplay-Semibold.woff2") format("woff2"),
+      url("/fonts/ClashDisplay-Semibold.woff") format("woff"),
+      url("/fonts/ClashDisplay-Semibold.ttf") format("truetype");
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "IBM-BIOS";
+    src: url("/fonts/WebPlus_IBM_BIOS.woff") format("woff");
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold mt-12 mb-4 font-serif;
+  }
+
+  h1 {
+    @apply text-6xl text-center;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl font-sans;
+  }
+
+  h4 {
+    @apply text-xl font-sans;
+  }
+
+  h5 {
+    @apply text-lg font-sans;
+  }
+
+  h6 {
+    @apply text-base font-sans;
+  }
+
+  p {
+    @apply mb-4 leading-tight;
+  }
+
+  a {
+    @apply text-secondary underline underline-offset-2 font-semibold;
+  }
+
+  a:hover {
+    @apply text-primary;
+  }
+
+  blockquote {
+    @apply border-raised border-l-4 font-normal italic my-8 pl-6;
+  }
+
+  code {
+    @apply bg-primary text-background px-1 py-px rounded text-sm;
+  }
+
+  /* code block */
+  pre {
+    @apply my-8;
+  }
+
+  hr {
+    @apply border-raised my-12;
+  }
+
+  ul,
+  ol {
+    @apply list-outside my-4 ml-8 leading-tight;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  ul > li,
+  ol > li {
+    @apply mb-2;
+  }
+
+  .ascii-art {
+    @apply font-['IBM-BIOS'] leading-none tracking-normal text-xs;
+  }
+
+  .styled-scrollbars {
+    --scrollbar-foreground: rgb(var(--color-primary));
+    --scrollbar-background: transparent;
+    /* Foreground, Background */
+    scrollbar-color: var(--scrollbar-foreground) var(--scrollbar-background);
+  }
+
+  .styled-scrollbars::-webkit-scrollbar {
+    width: 10px; /* Mostly for vertical scrollbars */
+    height: 10px; /* Mostly for horizontal scrollbars */
+  }
+
+  .styled-scrollbars::-webkit-scrollbar-thumb {
+    /* Foreground */
+    background: var(--scrollbar-foreground);
+  }
+
+  .styled-scrollbars::-webkit-scrollbar-track {
+    /* Background */
+    background: var(--scrollbar-background);
+  }
+
+  .nav-icon {
+    cursor: pointer;
+    display: inline-block;
+    /* margin-right: 1rem; */
+    width: var(--nav-icon-width);
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+  }
+
+  .nav-icon:after,
+  .nav-icon:before,
+  .nav-icon span {
+    margin: calc(var(--nav-icon-width) / 6) auto;
+    display: block;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    content: "";
+    height: calc(var(--nav-icon-width) / 6);
+    width: var(--nav-icon-width);
+    background-color: rgb(var(--color-primary));
+  }
+
+  .nav-icon.nav-icon--open:before {
+    transform: translateY(calc(var(--nav-icon-width) / 3)) rotate(135deg);
+    -webkit-transform: translateY(calc(var(--nav-icon-width) / 3))
+      rotate(135deg);
+    -moz-transform: translateY(calc(var(--nav-icon-width) / 3)) rotate(135deg);
+  }
+
+  .nav-icon.nav-icon--open:after {
+    transform: translateY(calc(-1 * var(--nav-icon-width) / 3)) rotate(-135deg);
+    -moz-transform: translateY(calc(-1 * var(--nav-icon-width) / 3))
+      rotate(-135deg);
+    -webkit-transform: translateY(calc(-1 * var(--nav-icon-width) / 3))
+      rotate(-135deg);
+  }
+
+  .nav-icon.nav-icon--open span {
+    transform: scaleX(0);
+    -moz-transform: scaleX(0);
+    -webkit-transform: scaleX(0);
+  }
+
+  .animate {
+    transition: all 0.35s ease-out;
+    -moz-transition: all 0.35s ease-out;
+    -webkit-transition: all 0.35s ease-out;
+  }
+
+  .nav-menu {
+    overflow: hidden;
+    /* hidden by default */
+    height: 0;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .nav-menu.open {
+    /* subtract the height of the nav-header */
+    /* height: calc(100vh - 4rem); */
+    height: 100dvh;
+    height: 100vh;
+  }
+
+  .nav-menu > .nav-link-container {
+    /* again, subtract the height of the nav-header to v-center the elements */
+    height: calc(100% - 4rem);
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 6rem;
+    color: white;
+  }
+
+  /* .nav-menu > .nav-link-container > a {
+    text-align: center;
+    color: #fec31d;
+    font-size: 2rem;
+  } */
+
+  .heading-link a {
+    @apply text-primary hover:text-secondary no-underline;
+  }
+
+  .callout * {
+    @apply mb-0;
+  }
+}
