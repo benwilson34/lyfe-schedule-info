@@ -8,8 +8,6 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
-import "./highlight-js-monokai-sublime.css";
-import asciiArtLogoString from "./ascii-art-logo.txt?raw";
 import React from "react";
 
 // TODO remove these fonts?
@@ -69,7 +67,7 @@ export default function App() {
       >
         <div className="h-fit grow-0 border-primary border rounded-xl p-2 -rotate-2">
           <div className="w-full flex flex-row justify-center">
-            <pre className="ascii-art mt-0 mb-4">{asciiArtLogoString}</pre>
+            {/* <pre className="ascii-art mt-0 mb-4">{asciiArtLogoString}</pre> */}
           </div>
 
           <h1 className="heading-link text-nowrap text-4xl mt-4 mb-1 mx-1">
@@ -159,7 +157,7 @@ export default function App() {
         >
           <div className="w-fit h-fit flex flex-col items-center rounded-xl p-2 text-3xl gap-6">
             <div className="w-full flex flex-row justify-center">
-              <pre className="ascii-art">{asciiArtLogoString}</pre>
+              {/* <pre className="ascii-art">{asciiArtLogoString}</pre> */}
             </div>
 
             {/* <h1 className="text-nowrap text-4xl mt-4 mb-1 mx-1">

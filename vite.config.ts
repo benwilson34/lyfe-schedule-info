@@ -8,7 +8,6 @@ import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { vitePlugin as remix } from "@remix-run/dev";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import rehypeHighlight from "rehype-highlight";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import { parseBoolean } from "./parse-boolean";
@@ -44,7 +43,6 @@ export default defineConfig({
             // },
           },
         ],
-        rehypeHighlight,
       ],
     }),
     remix({
