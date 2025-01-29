@@ -1,0 +1,170 @@
+# Tasks
+
+## Fields
+
+TODO image/anatomy of a task card
+
+### Title
+
+The task title is simply what it's called. It's recommended to start the title with an action verb to promote
+[actionable tasks](./recommendations.md#tasks-should-be-actionable).
+
+### Schedule
+
+Tasks can be scheduled for one or more days, the last of which is considered the "due date".
+
+::: tip
+TODO make this better
+
+For simple tasks, I think about the date range this way: 
+
+- "When is the earliest I can start/do this task?" -> start date
+- "When is the latest I can complete this task?" -> end date
+
+For repeating tasks, I think about the date range this way:
+
+- "How often is too often?" -> range 1
+- "How often is not often enough?" -> range 2
+
+Then you can calculate: 
+
+- range 1 = repeat interval
+- range 2 - range 1 = date range
+:::
+
+::: info
+Considered feature: make schedule/dates optional. Determine how this would work - do these tasks always show up today
+until they're completed?
+:::
+
+::: info
+Considered feature: optionally add a time to a date too, for example if you have a paper due at 10am on the due date.
+:::
+
+### Priority
+
+Priority is automatically assigned based on a task's date(s).
+
+- Blue tasks are upcoming or not pressing (yet).
+- Yellow tasks are approaching their end date (only applies to tasks with a date range).
+- Red tasks are overdue. The number of days they are overdue is shown next to the date(s) on the task card.
+
+Tasks are sorted by their priority.
+
+::: info
+Planned feature: assignable priority
+:::
+
+### Tags
+
+::: info
+Planned feature: a task can have zero or more tags. Add an entry in the sidebar for each existing tag; clicking on that
+entry lets a user view all tasks with that tag (regardless of their date(s)).
+:::
+
+### Repeat interval
+
+If enabled, how many days after a task is completed it should occur again.
+
+### Time estimate
+
+If enabled, the estimate in minutes for how long the task will take to complete. This is purely for your reference,
+but it is recommended to [add a time estimate to as many tasks as you can](./recommendations.md#use-time-estimates). 
+
+## Actions
+
+### Add a task
+
+TODO
+
+### Edit a task
+
+TODO
+
+### Complete a task
+
+Click on the white square on the left of a task card to complete it.
+
+::: warning
+There is currently no way to "un-complete" a task. I'm thinking about it.
+:::
+
+#### Complete on a different day
+
+Sometimes you forget to check something off that you did the other day - no problem, we can adjust for that.
+For the task in question:
+
+1. Click on the three dots on the right of the task card.
+1. Click on **Complete on a previous day**.
+1. In the calendar dialog, choose the day to complete the task and click **COMPLETE**.
+
+If applicable, the task will repeat based on this chosen complete date.
+
+### Changing the date of a task
+
+Often, you know you're not going to do something today even though it's on your list. In general, this should be
+handled by **postponing** the task, but the entire date range can also be "shifted" by **editing** the task.
+
+#### Postpone a task
+
+Postponing a task effectively "moves" it to a day in the future without changing its date range. To postpone:
+
+1. Click on the three dots on the right of the task card.
+1. Under **Postpone to**, choose one of the quick days or choose "Another day" to choose a specific day.
+1. If "Another day" was chosen, click the target day on the calendar picker dialog then click **POSTPONE**.
+
+::: warning
+There is currently no way to "un-postpone" a task. I'm thinking about it.
+:::
+
+#### Change date range
+
+This is generally discouraged, but if you want to change the entire date range for a task, you can do so by editing the task:
+
+1. Click on the three dots on the right of the task card.
+1. Click on **Edit**.
+1. Choose the desired date(s) in the edit dialog then click **SAVE**.
+
+::: info
+Considered feature: easier "reschedule" action that keeps the number of days in the range but moves the start date.
+:::
+
+### Delete a task
+
+If a task isn't needed anymore, it can be deleted:
+
+1. Click on the three dots on the right of the task card.
+1. Click on **Delete**.
+1. Confirm that the title is the one you want to delete then click **DELETE**.
+
+::: warning
+There is currently no way to "un-delete" a task. This action is permanent.
+:::
+
+::: info
+Considered feature: "soft delete" or recycle bin type pattern. When a user deletes a task, it actually goes to the "Trash" for some
+set amount of time, maybe 30 days, before it's deleted for good. During that time, the user can recover the task from the Trash if
+it was deleted by accident or another reason.
+:::
+
+
+# Repeating Tasks
+
+One of the most powerful features is repeating tasks - these are tasks that re-occur after a
+certain amount of time, like many chores. Examples:
+
+- Wash the dishes every day.
+- Sweep and vacuum the house every 2 to 4 weeks.
+- Replace the central HVAC filter every 3 to 6 months.
+
+A task is only "repeating" if its [repeat interval](#repeat-interval) is enabled.
+
+When in [Calendar View](./views.md#calendar-view), repeating tasks will be [projected](./views.md#projected-repeating-tasks) onto 
+future days.
+
+::: info
+Keep in mind that repeating tasks will repeat based on when the task is **completed** and **do not stack**. For
+example, take the task "Wash the dishes" that repeats every day. If you take 5 days to wash the dishes, there will only 
+be one task for it which will be 5 days overdue, rather than 5 tasks for it. Once you complete the task, it will repeat 
+starting the next day.
+:::

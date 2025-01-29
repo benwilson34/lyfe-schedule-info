@@ -1,131 +1,411 @@
 import type { MetaFunction } from "@remix-run/node";
-import { Frontmatter } from "~/types/Frontmatter";
-import { dateLocaleStringOptions } from "~/util/format";
-
-const posts = import.meta.glob("./posts.*.mdx", { eager: true }) as Record<
-  string,
-  {
-    frontmatter: Frontmatter;
-  }
->;
+import dayjs from "dayjs";
+import { ReactNode } from "react";
+import Button from "~/components/Button";
+import Footer from "~/components/Footer";
+import Nav from "~/components/Nav";
+import Page from "~/components/Page";
+import TaskCard, { Task } from "~/components/TaskCard";
+import { DEMO_URL } from "~/urls";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "ben'z house" },
-    { name: "description", content: "ben wilson's personal site" },
+    { title: "LyfeSchedule" },
+    {
+      name: "description",
+      content: "the todo app for people who get things done eventually™",
+    },
   ];
 };
 
-export default function Index() {
-  function renderRecentPostLinks() {
-    return (
-      <div className="flex flex-col">
-        {Object.entries(posts)
-          .map(([key, value]) => {
-            const mostRelevantDate =
-              value.frontmatter.dateUpdated || value.frontmatter.datePublished;
-            return [key, { ...value, mostRelevantDate }] as const;
-          })
-          .sort(([, valueA], [, valueB]) =>
-            valueA.mostRelevantDate > valueB.mostRelevantDate ? -1 : 1
-          )
-          .map(([key, value]) => {
-            // assert non-null because of the glob pattern in the import
-            // TODO replace `.` with `/`?
-            const slug = key.match(/posts\.(.+)\.mdx/i)![1];
-            const { mostRelevantDate, frontmatter } = value;
-            const { title } = frontmatter;
-            const shortDate = new Date(mostRelevantDate).toLocaleDateString(
-              undefined,
-              dateLocaleStringOptions
-            );
-
-            return (
-              <div key={slug}>
-                <span className="my-0">{shortDate}: </span>
-                <a href={`/posts/${slug}`}>{title}</a>
-              </div>
-            );
-          })}
+function FeatureRow({
+  leftChildren,
+  rightChildren,
+  isLineShowing = true,
+}: {
+  leftChildren?: ReactNode;
+  rightChildren?: ReactNode;
+  isLineShowing?: boolean;
+}) {
+  return (
+    <div className="flex flex-row justify-between min-h-64 max-h-64">
+      <div className="relative w-1/2 max-w-1/2 px-8 text-right">
+        {leftChildren}
       </div>
+
+      <div className="relative">
+        <div className="absolute flex flex-col items-center">
+          {/* <div className="absolute rounded-full border-4 border-ondark w-8 h-8 -left-4"></div> */}
+          <div className="absolute top-2.5 rounded-full bg-general-200 w-3 h-3"></div>
+
+          {isLineShowing && (
+            <div className="relative top-8 border-l-2 border-dashed border-general-200 h-56"></div>
+          )}
+        </div>
+      </div>
+
+      <div className="relative w-1/2 max-w-1/2 px-8">{rightChildren}</div>
+    </div>
+  );
+}
+
+export default function Index() {
+  const today = dayjs();
+
+  function renderDummyTaskCard(task: Omit<Task, "id" | "endDate" | "userId">) {
+    const fullTask = {
+      ...task,
+      id: "_",
+      userId: "_",
+      endDate: task.startDate.add(task.rangeDays - 1, "day"),
+    };
+    return <TaskCard task={fullTask} selectedDay={today} />;
+  }
+
+  function renderBody() {
+    return (
+      <>
+        <div className="pt-16 bg-general-500 text-ondark max-w-4xl mx-auto">
+          {/* <div className="flex flex-col items-center">
+            <h1>
+              <span className="font-extrabold">Lyfe</span>
+              <span className="font-light">Schedule</span>
+            </h1>
+
+            <p className="italic text-center">
+              the to-do app for people who
+              <br />
+              get things done eventually™
+            </p>
+
+            <div className="flex flex-row justify-between w-64 mt-8">
+              <Button type="light">Try the Demo</Button>
+
+              <Button type="light">Sign In</Button>
+            </div>
+          </div> */}
+
+          <div className="flex flex-row w-full px-4 mt-8">
+            <div className="w-1/2 flex flex-col items-center">
+              <div className="max-w-lg">
+                <h2 className="text-6xl mt-0">
+                  The to-do app for people who get things done{" "}
+                  <div className="inline-block relative">
+                    {/* <span className="absolute top-0.5 -left-0.5 text-ondark">
+                      eventually
+                    </span> */}
+
+                    <span className="relative top-0 left-0 text-general-200">
+                      {/* <span className="relative top-0 left-0 text-general-500"> */}
+                      eventually
+                    </span>
+                  </div>
+                  <span className="text-xl align-super"> ™</span>
+                </h2>
+
+                <p>Organize and plan your busy lyfe with LyfeSchedule.</p>
+
+                <div className="flex flex-row justify-center mt-12">
+                  <Button
+                    theme="general-200"
+                    onClick={() => {
+                      window.location.href = DEMO_URL;
+                    }}
+                  >
+                    Try the Demo
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-1/2 flex flex-col items-end">
+              <div className="relative w-2/5">
+                <img
+                  className="absolute top-0 right-full -rotate-6 rounded-xl shadow-xl"
+                  src="img\mobile-screenshot_1.png"
+                  alt="Screenshot of LyfeSchedule"
+                />
+                <img
+                  className="absolute top-16 rotate-3 rounded-xl shadow-xl"
+                  src="img\mobile-screenshot_2.png"
+                  alt="Screenshot of LyfeSchedule"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-center mt-48">
+            <FeatureRow
+              leftChildren={
+                <>
+                  <h3 className="mt-0 mb-1">Date Ranges</h3>
+                  <p>
+                    Many things we need or want to do don&apos;t have a single,
+                    strict &quot;due date&quot;. In short, tasks won&apos;t
+                    appear until their start date and won&apos;t be overdue
+                    until after their end date.
+                  </p>
+                </>
+              }
+              rightChildren={
+                <div className="-rotate-3 relative -top-6">
+                  {renderDummyTaskCard({
+                    title: "Replace water filter",
+                    startDate: today.subtract(12, "day"),
+                    rangeDays: 45,
+                  })}
+                </div>
+              }
+            />
+
+            <FeatureRow
+              leftChildren={
+                <>
+                  <h3 className="mt-0 mb-1">Automatic Priority</h3>
+                  <p>
+                    A task&apos;s priority automatically scales based on the
+                    current date. The most pressing tasks appear at the top of
+                    the list.
+                  </p>
+                </>
+              }
+              rightChildren={
+                <div className="rotate-3 relative -top-1">
+                  {renderDummyTaskCard({
+                    title: "Drop off package at the post office and buy stamps",
+                    startDate: today.subtract(3, "day"),
+                    rangeDays: 2,
+                    // tags: ["chores", "work"],
+                  })}
+                </div>
+              }
+            />
+
+            <FeatureRow
+              leftChildren={
+                <>
+                  <h3 className="mt-0 mb-1">Repeating Tasks</h3>
+                  <p>
+                    Set up tasks to repeat every day, week, month, year, or
+                    somewhere in between.
+                  </p>
+                </>
+              }
+              rightChildren={
+                <div className="-rotate-3 relative -top-5">
+                  {renderDummyTaskCard({
+                    title: "Work out",
+                    startDate: today.subtract(1, "day"),
+                    rangeDays: 2,
+                    repeatDays: 1,
+                  })}
+                </div>
+              }
+            />
+
+            <FeatureRow
+              leftChildren={
+                <>
+                  <h3 className="mt-0 mb-1">Tags</h3>
+                  <p>
+                    Organize your tasks with tags and view them with the Tag
+                    View.
+                  </p>
+                </>
+              }
+              rightChildren={
+                <div className="rotate-3 relative -top-2">
+                  {renderDummyTaskCard({
+                    title: "Update resume and job search resources",
+                    startDate: today.subtract(1, "day"),
+                    rangeDays: 5,
+                    tags: ["career", "weekly-goals"],
+                  })}
+                </div>
+              }
+            />
+
+            <FeatureRow
+              leftChildren={
+                <>
+                  <h3 className="mt-0 mb-1">Time Estimates</h3>
+                  <p>
+                    Estimate how long your tasks will take so you can plan
+                    around them.
+                  </p>
+                </>
+              }
+              rightChildren={
+                <div className="-rotate-3 relative -top-6">
+                  {renderDummyTaskCard({
+                    title: "Write first draft of review",
+                    startDate: today.subtract(1, "day"),
+                    rangeDays: 2,
+                    timeEstimateMins: 45,
+                  })}
+                </div>
+              }
+            />
+
+            <FeatureRow
+              leftChildren={
+                <>
+                  <h3 className="mt-0 mb-1">Postponements</h3>
+                  <p>
+                    Postpone tasks until a later date when you know you
+                    won&apos;t get to them yet (you will eventually™).
+                  </p>
+                </>
+              }
+              // rightChildren={
+              //   <div className="rotate-3">
+              //     {renderDummyTaskCard({
+              //       title: "Drop off package at the post office and buy stamps",
+              //       startDate: today.subtract(1, "day"),
+              //       rangeDays: 1,
+              //       tags: ["chores", "work"],
+              //     })}
+              //   </div>
+              // }
+            />
+
+            <FeatureRow
+              leftChildren={
+                <>
+                  <h3 className="mt-0 mb-1">Past Completion</h3>
+                  <p>
+                    Forgot to check something off your list the other day? No
+                    problem! Mark it as completed on that day and keep your
+                    repeating tasks on track.
+                  </p>
+                </>
+              }
+              // rightChildren={
+              //   <div className="rotate-3">
+              //     {renderDummyTaskCard({
+              //       title: "Drop off package at the post office and buy stamps",
+              //       startDate: today.subtract(1, "day"),
+              //       rangeDays: 1,
+              //       tags: ["chores", "work"],
+              //     })}
+              //   </div>
+              // }
+            />
+
+            <FeatureRow
+              leftChildren={
+                <>
+                  <h3 className="mt-0 mb-1">Calendar View</h3>
+                  <p>
+                    See your tasks for any day in the past or future (great for
+                    repeating tasks!).
+                  </p>
+                </>
+              }
+              // rightChildren={
+              //   <div className="rotate-3">
+              //     {renderDummyTaskCard({
+              //       title: "Drop off package at the post office and buy stamps",
+              //       startDate: today.subtract(1, "day"),
+              //       rangeDays: 1,
+              //       tags: ["chores", "work"],
+              //     })}
+              //   </div>
+              // }
+            />
+
+            <FeatureRow
+              leftChildren={
+                <>
+                  <h3 className="mt-0 mb-1">Tasteful UI</h3>
+                  <p>
+                    The interface is streamlined and attractive without being
+                    too engaging. After all, using this app should be one of the
+                    least interesting things you do today!
+                  </p>
+                  <p>
+                    Don&apos;t like stats? Turn that section off. Don&apos;t
+                    want to see all the fields on the task cards? Turn &apos;em
+                    off. You do you.
+                  </p>
+                </>
+              }
+              // rightChildren={
+              //   <div className="rotate-3">
+              //     {renderDummyTaskCard({
+              //       title: "Drop off package at the post office and buy stamps",
+              //       startDate: today.subtract(1, "day"),
+              //       rangeDays: 1,
+              //       tags: ["chores", "work"],
+              //     })}
+              //   </div>
+              // }
+            />
+
+            <FeatureRow
+              leftChildren={
+                <>
+                  <h3 className="mt-0 mb-1">Respect &amp; Realness</h3>
+                  <p>
+                    We all live busy lives &mdash; no judgement if/when you
+                    don&apos;t get something done. You will be treated like an
+                    adult. Your time, attention, and data will be respected.
+                  </p>
+                </>
+              }
+              isLineShowing={false}
+            />
+          </div>
+        </div>
+
+        <div className="bg-background text-onlight">
+          <div className="bg-background text-onlight py-8 px-4 max-w-xl mx-auto">
+            <h2 className="text-center mt-0">
+              It&apos;s free forever (seriously)
+            </h2>
+
+            <p>
+              LyfeSchedule is utterly and completely free &mdash; no features
+              are locked behind a paywall and there&apos;s no premium tier or
+              subscription model. It&apos;s also{" "}
+              <a href="https://github.com/benwilson34/lyfe-schedule">
+                open-source
+              </a>{" "}
+              and there are{" "}
+              <a href="https://github.com/benwilson34/lyfe-schedule?tab=readme-ov-file#run-the-app">
+                instructions for how you can spin up your own instance
+              </a>{" "}
+              if you really want to.
+            </p>
+            <div className="flex flex-col items-center">
+              <p>Try it today at no risk!</p>
+
+              <Button
+                theme="general"
+                onClick={() => {
+                  window.location.href = DEMO_URL;
+                }}
+              >
+                Try the Demo
+              </Button>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 
   return (
-    <div>
-      <div className="flex flex-row justify-center">
-        <div className="flex flex-col text-4xl mt-6 mb-6 w-fit border-y border-primary">
-          <span className="font-semibold tracking-wider">&quot;yer in</span>
+    <Page>
+      <Nav />
 
-          <div className="relative">
-            <div className="absolute top-4 left-0 bg-raised h-16 w-full"></div>
-          </div>
+      <div className="max-h-full">
+        <div className="flex flex-col justify-between overflow-x-hidden">
+          {renderBody()}
 
-          <span className="relative -top-2 font-serif text-8xl text-center -rotate-3 leading-[.8]">
-            ben&apos;z house
-          </span>
-
-          <div className="flex flex-row">
-            <span className="grow"></span>
-
-            <span className="font-semibold tracking-wider">
-              now, baby&quot;
-            </span>
-          </div>
+          <Footer />
         </div>
       </div>
-
-      <div className="border-t border-raised mb-10"></div>
-
-      <p>
-        Hi, I&apos;m Ben (he/him)! I&apos;m a software engineer specializing in
-        full-stack web development. I have a strong DIY ethic and love to learn
-        things, make things, and collaborate. Besides making software, I like
-        playing drums and guitar, listening to music, playing video games,
-        crocheting, playing tennis, woodworking, baking bread, and reading up on
-        whatever else interests me.
-      </p>
-
-      <p>
-        Some recent interests:
-        <ul>
-          <li>
-            learning to{" "}
-            <a href="https://youtu.be/NdCia_d1u5c?si=fQmYOh84Rwe6phXW">
-              riffle shuffle
-            </a>
-          </li>
-          <li>
-            making{" "}
-            <a href="https://youtu.be/cF-vuTPdOhQ?si=gM7cpWTmZiO73ppL">
-              homemade bagels
-            </a>{" "}
-            (2nd attempt with this recipe, they came out pretty good!)
-          </li>
-          <li>
-            learning{" "}
-            <a href="https://en.wikipedia.org/wiki/Black_Lady">Hearts</a> (and{" "}
-            <a href="https://mark.random-article.com/hearts/index.html">
-              strategies
-            </a>
-            )
-          </li>
-        </ul>
-      </p>
-
-      <p>
-        This is my personal corner of the internet. This is my house. My
-        sanctuary. Stay awhile.
-      </p>
-
-      <p>
-        If you&apos;re a web geek like me, there are details about how this site
-        was made on <a href="/about">the about page</a>.
-      </p>
-
-      <h2>recent posts</h2>
-
-      {renderRecentPostLinks()}
-    </div>
+    </Page>
   );
 }

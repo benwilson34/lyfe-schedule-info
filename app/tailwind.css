@@ -2,69 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
+/* html,
 body {
   @apply bg-white dark:bg-gray-950;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
-}
+} */
 
 /* Based on https://github.com/GeoffSelby/tailwind-md-base?tab=readme-ov-file#default-config */
 @layer base {
   :root {
-    --color-background: 20 37 41;
-    --color-raised: 40 74 82;
-    --color-primary: 255 132 31;
-    --color-secondary: 255 163 92;
-    --color-accent: 192 53 57;
+    --background-rgb: 245 243 222;
+    --general-500-rgb: 0 86 198;
+    --general-200-rgb: 185 213 230;
+    --general-100-rgb: 185 213 230; /* same as general-200 for now */
+    --accent-rgb: 86 235 0;
+    /* --warning-rgb: 245 228 174; */
+    --attention-rgb: 255 45 28;
+    --disabled-100-rgb: 218 215 196;
+    --disabled-200-rgb: 183 183 173;
+    --on-light-rgb: 0 86 198; /* same as general-500 */
+    --on-dark-rgb: 245 243 222; /* same as background */
+    /* --on-warning-rgb: 126 88 33; */
+    /* --on-attention-rgb: 155 34 25; */
+    --on-disabled-rgb: 84 84 84;
     --nav-icon-width: 1.5rem;
   }
 
-  /* @font-face {
-    font-family: "Basteleur";
-    src: url("/fonts/Basteleur-Bold.woff2") format("woff2"),
-      url("/fonts/Basteleur-Bold.woff") format("woff"),
-      url("/fonts/Basteleur-Bold.ttf") format("truetype");
-  }
-
-  @font-face {
-    font-family: "Basteleur Moonlight";
-    src: url("/fonts/Basteleur-Moonlight.woff2") format("woff2"),
-      url("/fonts/Basteleur-Moonlight.woff") format("woff"),
-      url("/fonts/Basteleur-Moonlight.ttf") format("truetype");
-  } */
-
-  @font-face {
-    font-family: "Trickster";
-    src: url("/fonts/Trickster-Regular.woff2") format("woff2"),
-      url("/fonts/Trickster-Regular.woff") format("woff");
-  }
-
-  @font-face {
-    font-family: "ClashDisplay-Light";
-    src: url("/fonts/ClashDisplay-Light.woff2") format("woff2"),
-      url("/fonts/ClashDisplay-Light.woff") format("woff"),
-      url("/fonts/ClashDisplay-Light.ttf") format("truetype");
-    font-weight: 300;
-    font-display: swap;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: "ClashDisplay-Semibold";
-    src: url("/fonts/ClashDisplay-Semibold.woff2") format("woff2"),
-      url("/fonts/ClashDisplay-Semibold.woff") format("woff"),
-      url("/fonts/ClashDisplay-Semibold.ttf") format("truetype");
-    font-weight: 600;
-    font-display: swap;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: "IBM-BIOS";
-    src: url("/fonts/WebPlus_IBM_BIOS.woff") format("woff");
+  html,
+  body {
+    @apply bg-background text-general font-sans font-light;
   }
 
   h1,
@@ -73,7 +42,7 @@ body {
   h4,
   h5,
   h6 {
-    @apply font-bold mt-12 mb-4 font-serif;
+    @apply font-bold mt-12 mb-4;
   }
 
   h1 {
@@ -105,19 +74,19 @@ body {
   }
 
   a {
-    @apply text-secondary underline underline-offset-2 font-semibold;
+    @apply font-semibold underline underline-offset-1;
   }
 
   a:hover {
-    @apply text-primary;
+    @apply text-accent;
   }
 
   blockquote {
-    @apply border-raised border-l-4 font-normal italic my-8 pl-6;
+    @apply border-accent border-l-4 font-normal italic my-8 pl-6;
   }
 
   code {
-    @apply bg-primary text-background px-1 py-px rounded text-sm;
+    @apply bg-general text-background px-1 py-px rounded text-sm;
   }
 
   /* code block */
@@ -126,7 +95,7 @@ body {
   }
 
   hr {
-    @apply border-raised my-12;
+    @apply border-accent my-12;
   }
 
   ul,
@@ -147,16 +116,21 @@ body {
     @apply mb-2;
   }
 
-  .ascii-art {
-    @apply font-['IBM-BIOS'] leading-none tracking-normal text-xs;
+  strong {
+    @apply font-semibold;
   }
 
-  .styled-scrollbars {
-    --scrollbar-foreground: rgb(var(--color-primary));
+  .styled-scrollbars,
+  .styled-scrollbars--general {
+    --scrollbar-foreground: rgb(var(--general-200-rgb));
     --scrollbar-background: transparent;
     /* Foreground, Background */
     scrollbar-color: var(--scrollbar-foreground) var(--scrollbar-background);
   }
+
+  /* .styled-scrollbars--light {
+
+  } */
 
   .styled-scrollbars::-webkit-scrollbar {
     width: 10px; /* Mostly for vertical scrollbars */
@@ -259,10 +233,76 @@ body {
   } */
 
   .heading-link a {
-    @apply text-primary hover:text-secondary no-underline;
+    @apply text-general hover:text-accent no-underline;
   }
 
   .callout * {
     @apply mb-0;
   }
+}
+
+/* TODO move to own file? */
+
+.task {
+  @apply bg-general-100 text-onlight;
+  /* prevent the options menu from "popping" during transitions, see https://stackoverflow.com/a/19311234 */
+  z-index: 0;
+  transition: z-index 0.5s step-end;
+}
+
+.task--selected {
+  /* prevent the options menu from "popping" during transitions, see https://stackoverflow.com/a/19311234 */
+  z-index: 20;
+  transition: z-index 0.5s step-start;
+}
+
+.task--completed {
+  @apply bg-disabled-100 text-ondisabled;
+}
+
+.task__checkbox {
+  @apply border-onlight cursor-pointer;
+}
+
+.task--completed .task__checkbox {
+  @apply border-ondisabled;
+}
+
+.task__checkbox--disabled {
+  @apply border-disabled-200 cursor-default;
+}
+
+.task--completed .task__checkbox--disabled {
+  @apply border-ondisabled cursor-default;
+}
+
+.task__checkbox--disabled::before {
+  content: "";
+  @apply absolute border-t-2 border-t-disabled-200 w-[1.414rem] -rotate-45 top-2 -left-1;
+}
+
+.task--completed .task__checkbox--disabled::before {
+  display: none;
+}
+
+.task__overdue-chip {
+  @apply bg-attention text-ondark;
+}
+
+.task--completed .task__overdue-chip {
+  @apply bg-disabled-100 text-ondisabled;
+}
+
+/* default loader styles apply to active (not completed) tasks */
+
+.task--completed .task__loader {
+  @apply border-r-ondisabled border-b-ondisabled;
+}
+
+.task__date-range--attention {
+  @apply text-attention;
+}
+
+.task--completed .task__date-range {
+  @apply text-inherit;
 }

@@ -5,16 +5,30 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "rgb(var(--color-background))",
-        raised: "rgb(var(--color-raised))",
-        primary: "rgb(var(--color-primary))",
-        secondary: "rgb(var(--color-secondary))",
-        accent: "rgb(var(--color-accent))",
+        background: "rgb(var(--background-rgb) / <alpha-value>)",
+        general: {
+          500: "rgb(var(--general-500-rgb) / <alpha-value>)",
+          DEFAULT: "rgb(var(--general-500-rgb) / <alpha-value>)",
+          200: "rgb(var(--general-200-rgb) / <alpha-value>)",
+          100: "rgb(var(--general-100-rgb) / <alpha-value>)",
+        },
+        accent: "rgb(var(--accent-rgb) / <alpha-value>)",
+        warning: "rgb(var(--warning-rgb) / <alpha-value>)",
+        attention: "rgb(var(--attention-rgb) / <alpha-value>)",
+        onlight: "rgb(var(--on-light-rgb) / <alpha-value>)",
+        ondark: "rgb(var(--on-dark-rgb) / <alpha-value>)",
+        onwarning: "rgb(var(--on-warning-rgb) / <alpha-value>)",
+        // onattention: "rgb(var(--on-attention-rgb) / <alpha-value>)",
+        disabled: {
+          100: "rgb(var(--disabled-100-rgb) / <alpha-value>)",
+          DEFAULT: "rgb(var(--disabled-200-rgb) / <alpha-value>)",
+          200: "rgb(var(--disabled-200-rgb) / <alpha-value>)",
+        },
+        ondisabled: "rgb(var(--on-disabled-rgb) / <alpha-value>)",
       },
       fontFamily: {
         sans: [
-          "ClashDisplay-Light",
-          "Inter",
+          "Geologica",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
@@ -23,7 +37,7 @@ export default {
           "Segoe UI Symbol",
           "Noto Color Emoji",
         ],
-        serif: ["Trickster", "serif"],
+        serif: ["serif"],
         // TODO FiraCode for monospace?
       },
       screens: {
