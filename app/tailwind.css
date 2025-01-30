@@ -168,7 +168,7 @@ body {
     content: "";
     height: calc(var(--nav-icon-width) / 6);
     width: var(--nav-icon-width);
-    background-color: rgb(var(--color-primary));
+    background-color: rgb(var(--on-dark-rgb));
   }
 
   .nav-icon.nav-icon--open:before {

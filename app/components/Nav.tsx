@@ -1,6 +1,35 @@
+import { useState } from "react";
 import { APP_URL, DEMO_URL } from "~/urls";
 
 export default function Nav() {
+  const [isMobileNavMenuOpen, setIsMobileNavMenuOpen] = useState(false);
+
+  function toggleMobileNavMenu() {
+    setIsMobileNavMenuOpen((isMobileNavMenuOpen) => !isMobileNavMenuOpen);
+  }
+
+  function renderNavOptions() {
+    return (
+      <>
+        <a className="text-ondark no-underline" href="/docs">
+          Docs
+        </a>
+
+        <span className="max-md:hidden">•</span>
+
+        <a className="text-ondark no-underline" href={DEMO_URL}>
+          Try the Demo
+        </a>
+
+        <span className="max-md:hidden">•</span>
+
+        <a className="text-ondark no-underline" href={APP_URL}>
+          Sign In
+        </a>
+      </>
+    );
+  }
+
   return (
     <div className="nav w-full sticky top-0 z-30 flex flex-row justify-between items-center gap-4 py-4 px-8 bg-general-500 text-ondark">
       <div className="font-bold text-2xl">
@@ -9,22 +38,27 @@ export default function Nav() {
         </a>
       </div>
 
-      <div className="flex flex-row gap-4">
-        <a className="text-ondark no-underline" href="/docs">
-          Docs
-        </a>
+      <div className="flex flex-row gap-4 max-md:hidden">
+        {renderNavOptions()}
+      </div>
 
-        <span>•</span>
+      <div className="md:hidden">
+        <button
+          className={`nav-icon ${isMobileNavMenuOpen ? "nav-icon--open" : ""}`}
+          onClick={toggleMobileNavMenu}
+        >
+          <span></span>
+        </button>
 
-        <a className="text-ondark no-underline" href={DEMO_URL}>
-          Try the Demo
-        </a>
-
-        <span>•</span>
-
-        <a className="text-ondark no-underline" href={APP_URL}>
-          Sign In
-        </a>
+        <div
+          className={`nav-menu w-full flex flex-row justify-center text-center -z-10 mt-14 bg-general animate ${
+            isMobileNavMenuOpen ? "open" : ""
+          }`}
+        >
+          <div className="w-fit h-fit flex flex-col items-center rounded-xl p-8 text-3xl gap-6">
+            {renderNavOptions()}
+          </div>
+        </div>
       </div>
     </div>
   );

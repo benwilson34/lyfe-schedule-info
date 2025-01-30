@@ -16,7 +16,7 @@ export default function Page({
 
   return (
     <div
-      className={`w-full h-screen max-h-screen overflow-y-auto styled-scrollbars ${colorClasses} ${className}`}
+      className={`w-full max-w-full h-screen max-h-screen overflow-y-auto overflow-x-hidden styled-scrollbars ${colorClasses} ${className}`}
     >
       {children}
     </div>

@@ -28,12 +28,12 @@ function FeatureRow({
   isLineShowing?: boolean;
 }) {
   return (
-    <div className="flex flex-row justify-between min-h-64 max-h-64">
-      <div className="relative w-1/2 max-w-1/2 px-8 text-right">
+    <div className="flex flex-col md:flex-row justify-between md:min-h-64 md:max-h-64 mt-24 md:mt-0">
+      <div className="relative md:w-1/2 md:max-w-1/2 px-8 text-center md:text-right">
         {leftChildren}
       </div>
 
-      <div className="relative">
+      <div className="relative max-md:hidden">
         <div className="absolute flex flex-col items-center">
           {/* <div className="absolute rounded-full border-4 border-ondark w-8 h-8 -left-4"></div> */}
           <div className="absolute top-2.5 rounded-full bg-general-200 w-3 h-3"></div>
@@ -44,7 +44,7 @@ function FeatureRow({
         </div>
       </div>
 
-      <div className="relative w-1/2 max-w-1/2 px-8">{rightChildren}</div>
+      <div className="relative md:w-1/2 md:max-w-1/2 px-8">{rightChildren}</div>
     </div>
   );
 }
@@ -65,47 +65,23 @@ export default function Index() {
   function renderBody() {
     return (
       <>
-        <div className="pt-16 bg-general-500 text-ondark max-w-4xl mx-auto">
-          {/* <div className="flex flex-col items-center">
-            <h1>
-              <span className="font-extrabold">Lyfe</span>
-              <span className="font-light">Schedule</span>
-            </h1>
-
-            <p className="italic text-center">
-              the to-do app for people who
-              <br />
-              get things done eventually™
-            </p>
-
-            <div className="flex flex-row justify-between w-64 mt-8">
-              <Button type="light">Try the Demo</Button>
-
-              <Button type="light">Sign In</Button>
-            </div>
-          </div> */}
-
-          <div className="flex flex-row w-full px-4 mt-8">
-            <div className="w-1/2 flex flex-col items-center">
+        <div className="pt-4 md:pt-16 bg-general-500 text-ondark max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row md:w-full px-8 mt-4 md:mt-8">
+            <div className="w-full md:w-1/2 flex flex-col items-center">
               <div className="max-w-lg">
-                <h2 className="text-6xl mt-0">
+                <h2 className="text-5xl md:text-6xl text-center md:text-left mt-0">
                   The to-do app for people who get things done{" "}
-                  <div className="inline-block relative">
-                    {/* <span className="absolute top-0.5 -left-0.5 text-ondark">
-                      eventually
-                    </span> */}
-
-                    <span className="relative top-0 left-0 text-general-200">
-                      {/* <span className="relative top-0 left-0 text-general-500"> */}
-                      eventually
-                    </span>
-                  </div>
-                  <span className="text-xl align-super"> ™</span>
+                  <span className="text-general-200 whitespace-nowrap">
+                    eventually
+                    <span className="text-xl align-super">™</span>
+                  </span>
                 </h2>
 
-                <p>Organize and plan your busy lyfe with LyfeSchedule.</p>
+                <p className="text-center md:text-left mt-6">
+                  Organize and plan your busy lyfe with LyfeSchedule.
+                </p>
 
-                <div className="flex flex-row justify-center mt-12">
+                <div className="flex flex-row justify-center md:mt-12">
                   <Button
                     theme="general-200"
                     onClick={() => {
@@ -118,15 +94,15 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="w-1/2 flex flex-col items-end">
-              <div className="relative w-2/5">
+            <div className="w-full md:w-1/2 flex flex-col items-center md:items-end mt-12 md:mt-0">
+              <div className="relative md:w-2/5 max-md:max-w-sm">
                 <img
-                  className="absolute top-0 right-full -rotate-6 rounded-xl shadow-xl"
+                  className="relative md:absolute md:top-0 md:right-full md:-rotate-6 rounded-xl shadow-xl"
                   src="img\mobile-screenshot_1.png"
                   alt="Screenshot of LyfeSchedule"
                 />
                 <img
-                  className="absolute top-16 rotate-3 rounded-xl shadow-xl"
+                  className="max-md:hidden absolute top-16 rotate-3 rounded-xl shadow-xl"
                   src="img\mobile-screenshot_2.png"
                   alt="Screenshot of LyfeSchedule"
                 />
@@ -134,7 +110,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="flex flex-col justify-center mt-48">
+          <div className="flex flex-col justify-center md:mt-48 max-md:max-w-md max-md:mx-auto">
             <FeatureRow
               leftChildren={
                 <>
@@ -148,7 +124,7 @@ export default function Index() {
                 </>
               }
               rightChildren={
-                <div className="-rotate-3 relative -top-6">
+                <div className="-rotate-3 relative md:-top-6">
                   {renderDummyTaskCard({
                     title: "Replace water filter",
                     startDate: today.subtract(12, "day"),
@@ -170,7 +146,7 @@ export default function Index() {
                 </>
               }
               rightChildren={
-                <div className="rotate-3 relative -top-1">
+                <div className="rotate-3 relative top-3 md:-top-1">
                   {renderDummyTaskCard({
                     title: "Drop off package at the post office and buy stamps",
                     startDate: today.subtract(3, "day"),
@@ -192,7 +168,7 @@ export default function Index() {
                 </>
               }
               rightChildren={
-                <div className="-rotate-3 relative -top-5">
+                <div className="-rotate-3 relative md:-top-5">
                   {renderDummyTaskCard({
                     title: "Work out",
                     startDate: today.subtract(1, "day"),
@@ -214,7 +190,7 @@ export default function Index() {
                 </>
               }
               rightChildren={
-                <div className="rotate-3 relative -top-2">
+                <div className="rotate-3 relative md:-top-2">
                   {renderDummyTaskCard({
                     title: "Update resume and job search resources",
                     startDate: today.subtract(1, "day"),
@@ -236,7 +212,7 @@ export default function Index() {
                 </>
               }
               rightChildren={
-                <div className="-rotate-3 relative -top-6">
+                <div className="-rotate-3 relative md:-top-6">
                   {renderDummyTaskCard({
                     title: "Write first draft of review",
                     startDate: today.subtract(1, "day"),
@@ -358,13 +334,13 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="bg-background text-onlight">
-          <div className="bg-background text-onlight py-8 px-4 max-w-xl mx-auto">
+        <div className="bg-background text-onlight mt-24 md:mt-0">
+          <div className="bg-background text-onlight py-8 px-8 max-w-xl mx-auto">
             <h2 className="text-center mt-0">
               It&apos;s free forever (seriously)
             </h2>
 
-            <p>
+            <p className="max-md:text-center">
               LyfeSchedule is utterly and completely free &mdash; no features
               are locked behind a paywall and there&apos;s no premium tier or
               subscription model. It&apos;s also{" "}
@@ -399,13 +375,13 @@ export default function Index() {
     <Page>
       <Nav />
 
-      <div className="max-h-full">
-        <div className="flex flex-col justify-between overflow-x-hidden">
-          {renderBody()}
+      {/* <div className="max-h-full"> */}
+      {/* <div className="flex flex-col justify-between overflow-x-hidden"> */}
+      {renderBody()}
 
-          <Footer />
-        </div>
-      </div>
+      <Footer />
+      {/* </div> */}
+      {/* </div> */}
     </Page>
   );
 }
