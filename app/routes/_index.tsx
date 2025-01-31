@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import dayjs from "dayjs";
 import { ReactNode } from "react";
+import { useHydrated } from "react-hydration-provider";
 import Button from "~/components/Button";
 import Footer from "~/components/Footer";
 import Nav from "~/components/Nav";
@@ -49,8 +50,11 @@ function FeatureRow({
   );
 }
 
-export default function Index() {
-  const today = dayjs();
+export default function LandingPage() {
+  const isHydrated = useHydrated();
+
+  const DEFAULT_DATE = "2025-01-26";
+  const today = isHydrated ? dayjs() : dayjs(DEFAULT_DATE);
 
   function renderDummyTaskCard(task: Omit<Task, "id" | "endDate" | "userId">) {
     const fullTask = {
