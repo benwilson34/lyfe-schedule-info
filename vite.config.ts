@@ -3,6 +3,7 @@
  * @see https://remix.run/docs/en/main/guides/vite#add-mdx-plugin
  */
 import mdx from "@mdx-js/rollup";
+import path from "path";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { vitePlugin as remix } from "@remix-run/dev";
@@ -21,6 +22,11 @@ declare module "@remix-run/node" {
 const isDev = parseBoolean(process.env.IS_DEV || "") ?? false;
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      "~": path.resolve(__dirname, "app/"),
+    },
+  },
   plugins: [
     mdx({
       remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
