@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/root-CMmrIloo.css"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&amp;display=swap"/></head><body><div class="w-screen max-w-screen h-screen max-h-screen overflow-y-auto overflow-x-hidden styled-scrollbars bg-background text-onlight "><div class="nav w-full sticky top-0 z-30 flex flex-col items-center bg-general-500 text-ondark"><div class="w-full flex flex-row justify-between items-center gap-4 py-4 px-8"><div class="font-bold text-2xl"><a href="/" class="no-underline text-ondark">Lyfe<span class="font-light">Schedule</span></a></div><div class="flex flex-row gap-4 max-md:hidden"><a class="text-ondark no-underline" href="/docs">Docs</a><span class="max-md:hidden">•</span><a class="text-ondark no-underline" href="https://demo.lyfeschedule.com">Try the Demo</a><span class="max-md:hidden">•</span><a class="text-ondark no-underline" href="https://app.lyfeschedule.com">Sign In</a></div><div class="md:hidden"><button class="nav-icon "><span></span></button><div class="nav-menu w-full flex flex-row justify-center text-center -z-10 mt-14 bg-general animate "><div class="w-fit h-fit flex flex-col items-center rounded-xl p-8 text-3xl gap-6"><a class="text-ondark no-underline" href="/docs">Docs</a><span class="max-md:hidden">•</span><a class="text-ondark no-underline" href="https://demo.lyfeschedule.com">Try the Demo</a><span class="max-md:hidden">•</span><a class="text-ondark no-underline" href="https://app.lyfeschedule.com">Sign In</a></div></div></div></div><div><div class="md:hidden w-full flex flex-row justify-center mb-2"><button id="docs-nav__page-button" class="flex flex-row items-center border border-ondark rounded-md ml-4 pr-2 pl-1"><div class="h-6 w-6 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><polyline points="6 9 12 15 18 9"></polyline></svg></div><span class="">Change Page</span></button></div><span hidden="" style="position:fixed;top:1px;left:1px;width:1px;height:0;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border-width:0;display:none"></span></div></div><div class="max-md:hidden fixed top-16 flex flex-col w-48 p-4"><a href="/docs/getting-started">Getting Started</a><a href="/docs/recommendations">Recommendations</a><a href="/docs/tasks">Tasks</a><a href="/docs/views">Views</a></div><div class="w-full max-w-full md:overflow-x-hidden md:pl-48"><div class="flex flex-col items-center"><div class="md:max-w-3xl px-4 "><h1 id="tasks" class="heading-link"><a href="#tasks">Tasks</a></h1>
+<h2 id="fields" class="heading-link"><a href="#fields">Fields</a></h2>
+<p>TODO image/anatomy of a task card</p>
+<h3 id="title" class="heading-link"><a href="#title">Title</a></h3>
+<p>The task title is simply what it&#x27;s called. It&#x27;s recommended to start the title with an action verb to promote
+<a href="./recommendations#tasks-should-be-actionable">actionable tasks</a>.</p>
+<h3 id="schedule" class="heading-link"><a href="#schedule">Schedule</a></h3>
+<p>Tasks can be scheduled for one or more days, the last of which is considered the &quot;due date&quot;.</p>
+<div class="callout flex flex-col xs:flex-row gap-4 items-center w-full border border-general rounded-xl px-4 py-4 xs:py-2 mb-4"><div class="h-12 w-12 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg></div><div class="grow">TODO make this better</div></div>
+<p>For simple tasks, I think about the date range this way:</p>
+<ul>
+<li>&quot;When is the earliest I can start/do this task?&quot; -&gt; start date</li>
+<li>&quot;When is the latest I can complete this task?&quot; -&gt; end date</li>
+</ul>
+<p>For repeating tasks, I think about the date range this way:</p>
+<ul>
+<li>&quot;How often is too often?&quot; -&gt; range 1</li>
+<li>&quot;How often is not often enough?&quot; -&gt; range 2</li>
+</ul>
+<p>Then you can calculate:</p>
+<ul>
+<li>range 1 = repeat interval</li>
+<li>range 2 - range 1 = date range</li>
+</ul>
+<div class="callout flex flex-col xs:flex-row gap-4 items-center w-full border border-general rounded-xl px-4 py-4 xs:py-2 mb-4"><div class="h-12 w-12 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div><div class="grow"><p>Considered feature: make schedule/dates optional. Determine how this would
+work - do these tasks always show up today until they&#x27;re completed?</p></div></div>
+<div class="callout flex flex-col xs:flex-row gap-4 items-center w-full border border-general rounded-xl px-4 py-4 xs:py-2 mb-4"><div class="h-12 w-12 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div><div class="grow"><p>Considered feature: optionally add a time to a date too, for example if you
+have a paper due at 10am on the due date.</p></div></div>
+<h3 id="priority" class="heading-link"><a href="#priority">Priority</a></h3>
+<p>Priority is automatically assigned based on a task&#x27;s date(s).</p>
+<ul>
+<li>Blue tasks are upcoming or not pressing (yet).</li>
+<li>Yellow tasks are approaching their end date (only applies to tasks with a date range).</li>
+<li>Red tasks are overdue. The number of days they are overdue is shown next to the date(s) on the task card.</li>
+</ul>
+<p>Tasks are sorted by their priority.</p>
+<div class="callout flex flex-col xs:flex-row gap-4 items-center w-full border border-general rounded-xl px-4 py-4 xs:py-2 mb-4"><div class="h-12 w-12 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div><div class="grow">Planned feature: assignable priority</div></div>
+<h3 id="tags" class="heading-link"><a href="#tags">Tags</a></h3>
+<div class="callout flex flex-col xs:flex-row gap-4 items-center w-full border border-general rounded-xl px-4 py-4 xs:py-2 mb-4"><div class="h-12 w-12 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div><div class="grow"><p>Planned feature: a task can have zero or more tags. Add an entry in the
+sidebar for each existing tag; clicking on that entry lets a user view all
+tasks with that tag (regardless of their date(s)).</p></div></div>
+<h3 id="repeat-interval" class="heading-link"><a href="#repeat-interval">Repeat interval</a></h3>
+<p>If enabled, how many days after a task is completed it should occur again.</p>
+<h3 id="time-estimate" class="heading-link"><a href="#time-estimate">Time estimate</a></h3>
+<p>If enabled, the estimate in minutes for how long the task will take to complete. This is purely for your reference,
+but it is recommended to <a href="./recommendations#use-time-estimates">add a time estimate to as many tasks as you can</a>.</p>
+<h2 id="actions" class="heading-link"><a href="#actions">Actions</a></h2>
+<h3 id="add-a-task" class="heading-link"><a href="#add-a-task">Add a task</a></h3>
+<p>TODO</p>
+<h3 id="edit-a-task" class="heading-link"><a href="#edit-a-task">Edit a task</a></h3>
+<p>TODO</p>
+<h3 id="complete-a-task" class="heading-link"><a href="#complete-a-task">Complete a task</a></h3>
+<p>Click on the white square on the left of a task card to complete it.</p>
+<div class="callout flex flex-col xs:flex-row gap-4 items-center w-full border border-general rounded-xl px-4 py-4 xs:py-2 mb-4"><div class="h-12 w-12 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div><div class="grow"><p>There is currently no way to &quot;un-complete&quot; a task. I&#x27;m thinking about it.</p></div></div>
+<h4 id="complete-on-a-different-day" class="heading-link"><a href="#complete-on-a-different-day">Complete on a different day</a></h4>
+<p>Sometimes you forget to check something off that you did the other day - no problem, we can adjust for that.
+For the task in question:</p>
+<ol>
+<li>Click on the three dots on the right of the task card.</li>
+<li>Click on <strong>Complete on a previous day</strong>.</li>
+<li>In the calendar dialog, choose the day to complete the task and click <strong>COMPLETE</strong>.</li>
+</ol>
+<p>If applicable, the task will repeat based on this chosen complete date.</p>
+<h3 id="changing-the-date-of-a-task" class="heading-link"><a href="#changing-the-date-of-a-task">Changing the date of a task</a></h3>
+<p>Often, you know you&#x27;re not going to do something today even though it&#x27;s on your list. In general, this should be
+handled by <strong>postponing</strong> the task, but the entire date range can also be &quot;shifted&quot; by <strong>editing</strong> the task.</p>
+<h4 id="postpone-a-task" class="heading-link"><a href="#postpone-a-task">Postpone a task</a></h4>
+<p>Postponing a task effectively &quot;moves&quot; it to a day in the future without changing its date range. To postpone:</p>
+<ol>
+<li>Click on the three dots on the right of the task card.</li>
+<li>Under <strong>Postpone to</strong>, choose one of the quick days or choose &quot;Another day&quot; to choose a specific day.</li>
+<li>If &quot;Another day&quot; was chosen, click the target day on the calendar picker dialog then click <strong>POSTPONE</strong>.</li>
+</ol>
+<div class="callout flex flex-col xs:flex-row gap-4 items-center w-full border border-general rounded-xl px-4 py-4 xs:py-2 mb-4"><div class="h-12 w-12 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div><div class="grow"><p>There is currently no way to &quot;un-postpone&quot; a task. I&#x27;m thinking about it.</p></div></div>
+<h4 id="change-date-range" class="heading-link"><a href="#change-date-range">Change date range</a></h4>
+<p>This is generally discouraged, but if you want to change the entire date range for a task, you can do so by editing the task:</p>
+<ol>
+<li>Click on the three dots on the right of the task card.</li>
+<li>Click on <strong>Edit</strong>.</li>
+<li>Choose the desired date(s) in the edit dialog then click <strong>SAVE</strong>.</li>
+</ol>
+<div class="callout flex flex-col xs:flex-row gap-4 items-center w-full border border-general rounded-xl px-4 py-4 xs:py-2 mb-4"><div class="h-12 w-12 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div><div class="grow"><p>Considered feature: easier &quot;reschedule&quot; action that keeps the number of days
+in the range but moves the start date.</p></div></div>
+<h3 id="delete-a-task" class="heading-link"><a href="#delete-a-task">Delete a task</a></h3>
+<p>If a task isn&#x27;t needed anymore, it can be deleted:</p>
+<ol>
+<li>Click on the three dots on the right of the task card.</li>
+<li>Click on <strong>Delete</strong>.</li>
+<li>Confirm that the title is the one you want to delete then click <strong>DELETE</strong>.</li>
+</ol>
+<div class="callout flex flex-col xs:flex-row gap-4 items-center w-full border border-general rounded-xl px-4 py-4 xs:py-2 mb-4"><div class="h-12 w-12 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div><div class="grow"><p>There is currently no way to &quot;un-delete&quot; a task. This action is permanent.</p></div></div>
+<div class="callout flex flex-col xs:flex-row gap-4 items-center w-full border border-general rounded-xl px-4 py-4 xs:py-2 mb-4"><div class="h-12 w-12 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div><div class="grow"><p>Considered feature: &quot;soft delete&quot; or recycle bin type pattern. When a user
+deletes a task, it actually goes to the &quot;Trash&quot; for some set amount of time,
+maybe 30 days, before it&#x27;s deleted for good. During that time, the user can
+recover the task from the Trash if it was deleted by accident or another
+reason.</p></div></div>
+<h1 id="repeating-tasks" class="heading-link"><a href="#repeating-tasks">Repeating Tasks</a></h1>
+<p>One of the most powerful features is repeating tasks - these are tasks that re-occur after a
+certain amount of time, like many chores. Examples:</p>
+<ul>
+<li>Wash the dishes every day.</li>
+<li>Sweep and vacuum the house every 2 to 4 weeks.</li>
+<li>Replace the central HVAC filter every 3 to 6 months.</li>
+</ul>
+<p>A task is only &quot;repeating&quot; if its <a href="#repeat-interval">repeat interval</a> is enabled.</p>
+<p>When in <a href="./views#calendar-view">Calendar View</a>, repeating tasks will be <a href="./views#projected-repeating-tasks">projected</a> onto
+future days.</p>
+<div class="callout flex flex-col xs:flex-row gap-4 items-center w-full border border-general rounded-xl px-4 py-4 xs:py-2 mb-4"><div class="h-12 w-12 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" class="h-full w-full"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div><div class="grow"><p>Keep in mind that repeating tasks will repeat based on when the task is
+<strong>completed</strong> and <strong>do not stack</strong>. For example, take the task &quot;Wash the
+dishes&quot; that repeats every day. If you take 5 days to wash the dishes, there
+will only be one task for it which will be 5 days overdue, rather than 5 tasks
+for it. Once you complete the task, it will repeat starting the next day.</p></div></div></div><div class="mt-10 text-center italic text-xs"><div class="border-general-200 w-full mb-4"></div>© <!-- -->2025<!-- --> <!-- -->LyfeSchedule<div class="mt-4"></div></div></div></div></div><script>((STORAGE_KEY, restoreKey) => {
+    if (!window.history.state || !window.history.state.key) {
+      let key = Math.random().toString(32).slice(2);
+      window.history.replaceState({
+        key
+      }, "");
+    }
+    try {
+      let positions = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}");
+      let storedY = positions[restoreKey || window.history.state.key];
+      if (typeof storedY === "number") {
+        window.scrollTo(0, storedY);
+      }
+    } catch (error) {
+      console.error(error);
+      sessionStorage.removeItem(STORAGE_KEY);
+    }
+  })("positions", null)</script><link rel="modulepreload" href="/assets/entry.client-Ceh-gJFi.js"/><link rel="modulepreload" href="/assets/jsx-runtime-BNSfpw-k.js"/><link rel="modulepreload" href="/assets/index-CXuf2i_S.js"/><link rel="modulepreload" href="/assets/components-CnYJ_GRk.js"/><link rel="modulepreload" href="/assets/index-C90lslf5.js"/><link rel="modulepreload" href="/assets/root-CCBjBMzl.js"/><link rel="modulepreload" href="/assets/Page-DxjAjCMQ.js"/><link rel="modulepreload" href="/assets/index-BPUlVCl8.js"/><link rel="modulepreload" href="/assets/docs-DJqjzX2L.js"/><link rel="modulepreload" href="/assets/Callout-PcGz6LIP.js"/><link rel="modulepreload" href="/assets/docs.tasks-BoxOFBoa.js"/><script>window.__remixContext = {"basename":"/","future":{"v3_fetcherPersist":true,"v3_relativeSplatPath":true,"v3_throwAbortReason":true,"v3_routeConfig":false,"v3_singleFetch":true,"v3_lazyRouteDiscovery":true,"unstable_optimizeDeps":false},"isSpaMode":false};window.__remixContext.stream = new ReadableStream({start(controller){window.__remixContext.streamController = controller;}}).pipeThrough(new TextEncoderStream());</script><script type="module" async="">;
+import * as route0 from "/assets/root-CCBjBMzl.js";
+import * as route1 from "/assets/docs-DJqjzX2L.js";
+import * as route2 from "/assets/docs.tasks-BoxOFBoa.js";
+window.__remixManifest = {
+  "entry": {
+    "module": "/assets/entry.client-Ceh-gJFi.js",
+    "imports": [
+      "/assets/jsx-runtime-BNSfpw-k.js",
+      "/assets/index-CXuf2i_S.js",
+      "/assets/components-CnYJ_GRk.js"
+    ],
+    "css": []
+  },
+  "routes": {
+    "root": {
+      "id": "root",
+      "path": "",
+      "hasAction": false,
+      "hasLoader": false,
+      "hasClientAction": false,
+      "hasClientLoader": false,
+      "hasErrorBoundary": false,
+      "module": "/assets/root-CCBjBMzl.js",
+      "imports": [
+        "/assets/jsx-runtime-BNSfpw-k.js",
+        "/assets/index-CXuf2i_S.js",
+        "/assets/components-CnYJ_GRk.js",
+        "/assets/index-C90lslf5.js"
+      ],
+      "css": [
+        "/assets/root-CMmrIloo.css"
+      ]
+    },
+    "routes/docs": {
+      "id": "routes/docs",
+      "parentId": "root",
+      "path": "docs",
+      "hasAction": false,
+      "hasLoader": false,
+      "hasClientAction": false,
+      "hasClientLoader": false,
+      "hasErrorBoundary": false,
+      "module": "/assets/docs-DJqjzX2L.js",
+      "imports": [
+        "/assets/jsx-runtime-BNSfpw-k.js",
+        "/assets/Page-DxjAjCMQ.js",
+        "/assets/index-CXuf2i_S.js",
+        "/assets/index-BPUlVCl8.js"
+      ],
+      "css": []
+    },
+    "routes/docs.tasks": {
+      "id": "routes/docs.tasks",
+      "parentId": "routes/docs",
+      "path": "tasks",
+      "hasAction": false,
+      "hasLoader": false,
+      "hasClientAction": false,
+      "hasClientLoader": false,
+      "hasErrorBoundary": false,
+      "module": "/assets/docs.tasks-BoxOFBoa.js",
+      "imports": [
+        "/assets/jsx-runtime-BNSfpw-k.js",
+        "/assets/Callout-PcGz6LIP.js",
+        "/assets/index-BPUlVCl8.js"
+      ],
+      "css": []
+    },
+    "routes/_index": {
+      "id": "routes/_index",
+      "parentId": "root",
+      "index": true,
+      "hasAction": false,
+      "hasLoader": false,
+      "hasClientAction": false,
+      "hasClientLoader": false,
+      "hasErrorBoundary": false,
+      "module": "/assets/_index-DHfZbGBw.js",
+      "imports": [
+        "/assets/jsx-runtime-BNSfpw-k.js",
+        "/assets/index-C90lslf5.js",
+        "/assets/Page-DxjAjCMQ.js",
+        "/assets/index-BPUlVCl8.js"
+      ],
+      "css": []
+    },
+    "routes/docs._index": {
+      "id": "routes/docs._index",
+      "parentId": "routes/docs",
+      "index": true,
+      "hasAction": false,
+      "hasLoader": false,
+      "hasClientAction": false,
+      "hasClientLoader": false,
+      "hasErrorBoundary": false,
+      "module": "/assets/docs._index-qcJfZDNy.js",
+      "imports": [
+        "/assets/jsx-runtime-BNSfpw-k.js"
+      ],
+      "css": []
+    }
+  },
+  "url": "/assets/manifest-d23c2f38.js",
+  "version": "d23c2f38"
+};
+window.__remixRouteModules = {"root":route0,"routes/docs":route1,"routes/docs.tasks":route2};
+
+import("/assets/entry.client-Ceh-gJFi.js");</script></body></html><!--$?--><template id="B:0"></template><!--/$--><div hidden id="S:0"><script>window.__remixContext.streamController.enqueue("[{\"_1\":2,\"_6\":-5,\"_7\":-5},\"loaderData\",{\"_3\":-5,\"_4\":-5,\"_5\":-5},\"root\",\"routes/docs\",\"routes/docs.tasks\",\"actionData\",\"errors\"]\n");</script><!--$?--><template id="B:1"></template><!--/$--></div><script>function $RC(a,b){a=document.getElementById(a);b=document.getElementById(b);b.parentNode.removeChild(b);if(a){a=a.previousSibling;var f=a.parentNode,c=a.nextSibling,e=0;do{if(c&&8===c.nodeType){var d=c.data;if("/$"===d)if(0===e)break;else e--;else"$"!==d&&"$?"!==d&&"$!"!==d||e++}d=c.nextSibling;f.removeChild(c);c=d}while(c);for(;b.firstChild;)f.insertBefore(b.firstChild,c);a.data="$";a._reactRetry&&a._reactRetry()}};$RC("B:0","S:0")</script><div hidden id="S:1"><script>window.__remixContext.streamController.close();</script></div><script>$RC("B:1","S:1")</script>
